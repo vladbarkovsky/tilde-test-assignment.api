@@ -1,18 +1,13 @@
 ﻿namespace TildeTestAssignment.ORM.Entities
 {
-    public class Transaction : BaseEntity
+    public class Debt : BaseEntity
     {
         public Guid CreditorId { get; set; }
         public Person Creditor { get; set; }
         public Guid DebtorId { get; set; }
         public Person Debtor { get; set; }
-        public TransactionType Type { get; set; }
         public decimal Amount { get; set; }
-    }
-
-    public enum TransactionType
-    {
-        Loan = 0,
-        Refund = 1
+        public decimal Refunded { get; set; }
+        public List<Refund> Refunds { get; set; }
     }
 }

@@ -14,7 +14,8 @@ namespace TildeTestAssignment.ORM.Services
 
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<Person> Persons { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Debt> Debts { get; set; }
+        public DbSet<Refund> Refunds { get; set; }
 
         public ApplicationDbContext(DbContextOptions options, IDateTimeService dateTimeService) : base(options)
         {

@@ -6,6 +6,7 @@ namespace TildeTestAssignment.Application.Statistics.Models
 {
     public class BalanceStatusVM : IMapped
     {
+        public Guid PersonId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public BalanceStatus BalanceStatus { get; set; }
@@ -13,6 +14,7 @@ namespace TildeTestAssignment.Application.Statistics.Models
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Person, BalanceStatusVM>()
+                .ForMember(d => d.PersonId, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.BalanceStatus, o => o.MapFrom<BalanceStatusResolver>());
         }
     }
