@@ -5,7 +5,7 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public decimal Balance { get; set; }
-        public List<Transaction> Loans { get; set; }
-        public List<Transaction> Refunds { get; set; }
+        public List<Transaction> DebtorTransactions { get; set; }
+        public List<Transaction> CreditorTransactions { get; set; }
     }
 }

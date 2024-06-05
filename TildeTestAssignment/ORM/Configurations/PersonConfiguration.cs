@@ -11,14 +11,13 @@ namespace TildeTestAssignment.ORM.Configurations
             base.Configure(builder);
 
             builder
-                .HasMany(x => x.Loans)
+                .HasMany(x => x.DebtorTransactions)
                 .WithOne(x => x.Debtor)
                 .HasForeignKey(x => x.DebtorId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.SetNull);
-
             builder
-                .HasMany(x => x.Refunds)
+                .HasMany(x => x.CreditorTransactions)
                 .WithOne(x => x.Creditor)
                 .HasForeignKey(x => x.CreditorId)
                 .IsRequired()

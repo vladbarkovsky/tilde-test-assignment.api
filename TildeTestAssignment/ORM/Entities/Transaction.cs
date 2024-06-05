@@ -6,6 +6,13 @@
         public Person Creditor { get; set; }
         public Guid DebtorId { get; set; }
         public Person Debtor { get; set; }
+        public TransactionType Type { get; set; }
         public decimal Amount { get; set; }
+    }
+
+    public enum TransactionType
+    {
+        Loan = 0,
+        Refund = 1
     }
 }

@@ -1,5 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using TildeTestAssignment.Application.Common.Pagination;
+using TildeTestAssignment.Application.Statistics.Models;
+using TildeTestAssignment.Application.Statistics.Queries;
 
 namespace TildeTestAssignment.Web.Controllers
 {
@@ -9,8 +12,9 @@ namespace TildeTestAssignment.Web.Controllers
         { }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult> GetBalanceStatuses()
+        public async Task<ActionResult<PaginatedResult<BalanceStatusVM>>> GetBalanceStatuses([FromBody] GetBalanceStatuses.Query query)
         {
+            return await _sender.Send(query);
         }
 
         [HttpGet("[action]")]
