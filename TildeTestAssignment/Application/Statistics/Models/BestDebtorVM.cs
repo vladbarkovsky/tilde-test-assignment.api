@@ -5,7 +5,7 @@
         public Guid PersonId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public double RefundedRelative { get; set; }
+        public decimal RefundedRelative { get; set; }
         public decimal TotalDebtAmount { get; set; }
     }
 }

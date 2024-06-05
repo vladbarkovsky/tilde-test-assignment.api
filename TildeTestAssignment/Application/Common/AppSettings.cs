@@ -1,4 +1,4 @@
-﻿namespace TildeTestAssignment.Application
+﻿namespace TildeTestAssignment.Application.Common
 {
     public class AppSettings
     {

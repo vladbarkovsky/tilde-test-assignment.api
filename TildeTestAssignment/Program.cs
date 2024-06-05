@@ -1,7 +1,7 @@
-
 using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Display;
+using TildeTestAssignment.ORM.Services.Interfaces;
 
 namespace TildeTestAssignment
 {
@@ -30,9 +30,9 @@ namespace TildeTestAssignment
                 .Build();
 
             using var scope = host.Services.CreateScope();
-            var services = scope.ServiceProvider;
-
-            // TODO: Seeding.
+            var serviceProvider = scope.ServiceProvider;
+            var seedingService = serviceProvider.GetRequiredService<ISeedingService>();
+            await seedingService.SeedAsync();
 
             await host.RunAsync();
         }

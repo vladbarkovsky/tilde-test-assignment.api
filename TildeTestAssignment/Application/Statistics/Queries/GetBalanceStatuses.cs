@@ -1,19 +1,15 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using TildeTestAssignment.Application.Common.Pagination;
 using TildeTestAssignment.Application.Statistics.Models;
 using TildeTestAssignment.ORM.Services.Interfaces;
 
 namespace TildeTestAssignment.Application.Statistics.Queries
 {
-    public class GetBalanceStatuses : IRequestHandler<GetBalanceStatuses.Query, PaginatedResult<BalanceStatusVM>>
+    public class GetBalanceStatuses : IRequestHandler<GetBalanceStatuses.Query, List<BalanceStatusVM>>
     {
-        public class Query : PaginatedQuery, IRequest<PaginatedResult<BalanceStatusVM>>
-        {
-            public class Validator : PaginatedQueryValidatorTemplate<Query>
-            { }
-        }
+        public class Query : IRequest<List<BalanceStatusVM>>
+        { }
 
         private readonly IApplicationDbContext _applicationDbContext;
         private readonly IMapper _mapper;
@@ -24,13 +20,10 @@ namespace TildeTestAssignment.Application.Statistics.Queries
             _mapper = mapper;
         }
 
-        public async Task<PaginatedResult<BalanceStatusVM>> Handle(Query request, CancellationToken cancellationToken)
+        public async Task<List<BalanceStatusVM>> Handle(Query request, CancellationToken cancellationToken)
         {
-            var persons = await _applicationDbContext.Persons
-                .AsNoTracking()
-                .ToPaginatedResultAsync(request, cancellationToken);
-
-            return _mapper.Map<PaginatedResult<BalanceStatusVM>>(persons);
+            var persons = await _applicationDbContext.Persons.ToListAsync(cancellationToken);
+            return _mapper.Map<List<BalanceStatusVM>>(persons);
         }
     }
 }

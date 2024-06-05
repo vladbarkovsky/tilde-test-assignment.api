@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TildeTestAssignment.Application.Statistics.Models;
 using TildeTestAssignment.ORM.Services.Interfaces;
@@ -13,12 +12,10 @@ namespace TildeTestAssignment.Application.Statistics.Queries
         { }
 
         private readonly IApplicationDbContext _applicationDbContext;
-        private readonly IMapper _mapper;
 
-        public GetBiggestDebtorCreditor(IApplicationDbContext applicationDbContext, IMapper mapper)
+        public GetBiggestDebtorCreditor(IApplicationDbContext applicationDbContext)
         {
             _applicationDbContext = applicationDbContext;
-            _mapper = mapper;
         }
 
         public async Task<BiggestDebtorCreditorVM> Handle(Query request, CancellationToken cancellationToken)

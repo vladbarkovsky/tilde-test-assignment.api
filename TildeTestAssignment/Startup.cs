@@ -1,10 +1,7 @@
-﻿using FluentValidation;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Reflection;
-using TildeTestAssignment.Application;
 using TildeTestAssignment.Application.Common;
 using TildeTestAssignment.ORM.Services;
 using TildeTestAssignment.ORM.Services.Interfaces;
@@ -96,10 +93,6 @@ namespace TildeTestAssignment
             {
                 configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             });
-
-            services
-                .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly())
-                .AddFluentValidationAutoValidation();
 
             services.AddControllers();
         }

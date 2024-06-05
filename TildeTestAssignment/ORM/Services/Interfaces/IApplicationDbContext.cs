@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using TildeTestAssignment.ORM.Entities;
 
 namespace TildeTestAssignment.ORM.Services.Interfaces
 {
     public interface IApplicationDbContext
     {
-        public DbSet<AuditLog> AuditLogs { get; set; }
+        DatabaseFacade Database { get; }
+
         public DbSet<Person> Persons { get; set; }
         public DbSet<Debt> Debts { get; set; }
-        public DbSet<Refund> Refunds { get; set; }
 
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
