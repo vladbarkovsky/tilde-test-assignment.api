@@ -27,7 +27,7 @@ namespace TildeTestAssignment.Application.Statistics.Queries
                     PersonId = p.Id,
                     FirstName = p.FirstName,
                     LastName = p.LastName,
-                    RefundedRelative = p.DebtorDebts.Any() ?
+                    RefundedRelative = p.DebtorDebts.Count != 0 ?
                         p.DebtorDebts.Sum(d => d.Refunded) / p.DebtorDebts.Sum(d => d.Amount) :
                         0,
                     TotalDebtAmount = p.DebtorDebts.Sum(d => d.Amount)

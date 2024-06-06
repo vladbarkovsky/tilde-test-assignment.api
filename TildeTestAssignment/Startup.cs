@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Net.Http.Headers;
+using System.Net.Mime;
 using System.Reflection;
 using TildeTestAssignment.Application.Common;
 using TildeTestAssignment.ORM.Services;
@@ -85,6 +86,8 @@ namespace TildeTestAssignment
                     if (exception is HttpStatusException)
                     {
                         httpContext.Response.StatusCode = (exception as HttpStatusException).StatusCode;
+                        httpContext.Response.ContentType = MediaTypeNames.Text.Plain;
+                        await httpContext.Response.WriteAsync(exception.Message);
                     }
                 };
             });

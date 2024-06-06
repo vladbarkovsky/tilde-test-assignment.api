@@ -67,10 +67,9 @@ namespace TildeTestAssignment.Application.Statistics.Queries
 
                 if (!sortExpressionFound)
                 {
-                    throw new HttpStatusException("Invalid sort parameter sortBy.");
+                    throw new HttpStatusException("Invalid parameter sortBy.");
                 }
 
-                // TODO: Ordering triggers query to database. Investigate.
                 var ordered = (request.SortDirection ?? SortDirection.Ascending) == SortDirection.Ascending ?
                    averageDebts.OrderBy(sortExpression) :
                    averageDebts.OrderByDescending(sortExpression);

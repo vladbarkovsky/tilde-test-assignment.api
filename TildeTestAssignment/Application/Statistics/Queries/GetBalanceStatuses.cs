@@ -60,7 +60,7 @@ namespace TildeTestAssignment.Application.Statistics.Queries
 
             if (!sortExpressionFound)
             {
-                throw new HttpStatusException("Invalid sort parameter sortBy.");
+                throw new HttpStatusException("Invalid parameter sortBy.");
             }
 
             var sorted = (request.SortDirection ?? SortDirection.Ascending) == SortDirection.Ascending ?
