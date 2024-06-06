@@ -21,6 +21,7 @@ namespace TildeTestAssignment.Application.Statistics.Queries
         public async Task<BiggestDebtorCreditorVM> Handle(Query request, CancellationToken cancellationToken)
         {
             var biggestDebtorCreditor = await _applicationDbContext.Persons
+                .AsNoTracking()
                 .Select(p => new BiggestDebtorCreditorVM
                 {
                     PersonId = p.Id,

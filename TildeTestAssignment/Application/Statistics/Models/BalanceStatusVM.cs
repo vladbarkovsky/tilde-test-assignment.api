@@ -9,13 +9,13 @@ namespace TildeTestAssignment.Application.Statistics.Models
         public Guid PersonId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public BalanceStatus BalanceStatus { get; set; }
+        public BalanceStatus Status { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Person, BalanceStatusVM>()
                 .ForMember(d => d.PersonId, o => o.MapFrom(s => s.Id))
-                .ForMember(d => d.BalanceStatus, o => o.MapFrom<BalanceStatusResolver>());
+                .ForMember(d => d.Status, o => o.MapFrom<BalanceStatusResolver>());
         }
     }
 

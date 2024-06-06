@@ -7,11 +7,23 @@
   },
   "paths": {
     "/api/Statistics/GetBalanceStatuses": {
-      "get": {
+      "post": {
         "tags": [
           "Statistics"
         ],
         "operationId": "Statistics_GetBalanceStatuses",
+        "requestBody": {
+          "x-name": "query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBalanceStatusesQuery"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
         "responses": {
           "200": {
             "description": "",
@@ -29,12 +41,12 @@
         }
       }
     },
-    "/api/Statistics/GetTop": {
+    "/api/Statistics/GetBiggestDebtorCreditor": {
       "get": {
         "tags": [
           "Statistics"
         ],
-        "operationId": "Statistics_GetTop",
+        "operationId": "Statistics_GetBiggestDebtorCreditor",
         "responses": {
           "200": {
             "description": "",
@@ -50,11 +62,23 @@
       }
     },
     "/api/Statistics/GetAverageDebts": {
-      "get": {
+      "post": {
         "tags": [
           "Statistics"
         ],
         "operationId": "Statistics_GetAverageDebts",
+        "requestBody": {
+          "x-name": "query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAverageDebtsQuery"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
         "responses": {
           "200": {
             "description": "",
@@ -109,7 +133,7 @@
           "lastName": {
             "type": "string"
           },
-          "balanceStatus": {
+          "status": {
             "$ref": "#/components/schemas/BalanceStatus"
           }
         }
@@ -126,6 +150,40 @@
           0,
           1,
           2
+        ]
+      },
+      "GetBalanceStatusesQuery": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sortBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "sortDirection": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SortDirection"
+              }
+            ]
+          },
+          "searchText": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SortDirection": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Ascending",
+          "Descending"
+        ],
+        "enum": [
+          0,
+          1
         ]
       },
       "BiggestDebtorCreditorVM": {
@@ -166,9 +224,31 @@
           "lastName": {
             "type": "string"
           },
-          "averageDebt": {
+          "debt": {
             "type": "number",
             "format": "decimal"
+          }
+        }
+      },
+      "GetAverageDebtsQuery": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sortBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "sortDirection": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SortDirection"
+              }
+            ]
+          },
+          "searchText": {
+            "type": "string",
+            "nullable": true
           }
         }
       },

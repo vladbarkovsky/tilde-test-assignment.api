@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Net.Http.Headers;
 using System.Reflection;
 using TildeTestAssignment.Application.Common;
 using TildeTestAssignment.ORM.Services;
@@ -57,6 +58,7 @@ namespace TildeTestAssignment
 
                     builder
                         .WithOrigins(_configuration[AppSettings.ClientBaseUrl])
+                        .WithHeaders(HeaderNames.ContentType)
                         .Build();
                 });
             });

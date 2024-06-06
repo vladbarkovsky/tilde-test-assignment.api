@@ -10,10 +10,10 @@ namespace TildeTestAssignment.Web.Controllers
         public StatisticsController(ISender sender) : base(sender)
         { }
 
-        [HttpGet("[action]")]
-        public async Task<ActionResult<List<BalanceStatusVM>>> GetBalanceStatuses()
+        [HttpPost("[action]")]
+        public async Task<ActionResult<List<BalanceStatusVM>>> GetBalanceStatuses([FromBody] GetBalanceStatuses.Query query)
         {
-            return await _sender.Send(new GetBalanceStatuses.Query());
+            return await _sender.Send(query);
         }
 
         [HttpGet("[action]")]
@@ -22,10 +22,10 @@ namespace TildeTestAssignment.Web.Controllers
             return await _sender.Send(new GetBiggestDebtorCreditor.Query());
         }
 
-        [HttpGet("[action]")]
-        public async Task<ActionResult<List<AverageDebtVM>>> GetAverageDebts()
+        [HttpPost("[action]")]
+        public async Task<ActionResult<List<AverageDebtVM>>> GetAverageDebts([FromBody] GetAverageDebts.Query query)
         {
-            return await _sender.Send(new GetAverageDebts.Query());
+            return await _sender.Send(query);
         }
 
         [HttpGet("[action]")]

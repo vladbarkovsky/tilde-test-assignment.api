@@ -21,6 +21,6 @@ dotnet ef migrations remove -p TildeTestAssignment -c ApplicationDbContext
 dotnet ef database update 0 -p TildeTestAssignment -c ApplicationDbContext
 ```
 
-# Build and Test
+# Build and test
 
 TODO: Describe and show how to build code and run the tests.

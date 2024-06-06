@@ -21,6 +21,7 @@ namespace TildeTestAssignment.Application.Statistics.Queries
         public async Task<BestDebtorVM> Handle(Query request, CancellationToken cancellationToken)
         {
             var bestDebtor = await _applicationDbContext.Persons
+                .AsNoTracking()
                 .Select(p => new BestDebtorVM
                 {
                     PersonId = p.Id,
